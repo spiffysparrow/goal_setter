@@ -20,7 +20,7 @@ feature "new page" do
   feature "when not logged in" do
     scenario "can't visit new goals page" do
       visit new_goal_url
-      expect(current_path).to eq(new_session_url)
+      expect(current_url).to eq(new_session_url)
     end
   end
 
@@ -34,7 +34,7 @@ feature "new page" do
     end
     scenario "create new goal" do
       fill_in "Title", with: "More Carrots"
-      choose "Private"
+      choose "Public"
       click_on "Create Goal"
       expect(current_path).not_to eq(new_goal_url)
       expect(page).to have_content("More Carrots")
@@ -44,8 +44,11 @@ feature "new page" do
       click_on "Create Goal"
       expect(page).to have_content("Title can't be blank")
     end
-    scenario "default private" do
-      input("Private").to be_check
+    scenario "private button checked by default" do
+      fill_in "Title", with: "More Carrots"
+      fill_in "Body", with: "This is a body"
+      click_on "Create Goal"
+      expect(page).to have_content('This goal is private')
     end
   end
 

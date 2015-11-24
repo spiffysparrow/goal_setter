@@ -1,0 +1,28 @@
+<form action="<%= action %>" method="post">
+
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= render "shared/auth_token" %>
+
+  <label>Title
+    <input type="text" name="goal[title]" value="<%= @goal.title %>">
+  </label>
+  <br><br>
+
+  <label>Body
+    <textarea name="goal[body]" rows="8" cols="40"><%= @goal.body %></textarea>
+  </label>
+
+  <br><br>
+
+  <label>Private
+    <input type="radio" name="goal[private]" value="true" checked>
+  </label>
+  <label>Public
+    <input type="radio" name="goal[private]" value="false">
+  </label>
+
+  <br><br>
+
+  <input type="submit" value="<%= button_text %>">
+
+</form>
