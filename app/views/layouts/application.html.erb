@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<%= render 'layouts/session_buttons' %>
+<%= flash[:errors].join("<br>".html_safe) if flash[:errors] %>
 <%= yield %>
 
 </body>
